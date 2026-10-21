@@ -1,0 +1,15 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        maven { url 'https://maven.minecraftforge.net/releases' }
+    }
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == 'net.minecraftforge.gradle') {
+                useModule("net.minecraftforge.gradle:ForgeGradle:6.0.0")
+            }
+        }
+    }
+}
+
+rootProject.name = 'trnightmare-ego-autoclick'
