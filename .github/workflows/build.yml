@@ -1,0 +1,37 @@
+name: build
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: gradle/actions/setup-gradle@v4
+      - run: chmod +x gradlew
+      - name: Build
+        id: build
+        shell: bash
+        run: |
+          set +e
+          ./gradlew build --no-daemon --stacktrace 2>&1 | tee build.log
+          exit ${PIPESTATUS[0]}
+      - name: Surface failure log as annotation
+        if: failure() && steps.build.outcome == 'failure'
+        shell: bash
+        run: |
+          TAIL=$(tail -c 60000 build.log)
+          ESCAPED=$(printf '%s' "$TAIL" | python3 -c "import sys; print(sys.stdin.read().replace('%','%25').replace(chr(13),'%0D').replace(chr(10),'%0A'))")
+          echo "::error::$ESCAPED"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: trnightmare-ego-autoclick-build
+          path: |
+            build/libs/*.jar
+            build.log
