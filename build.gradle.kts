@@ -18,7 +18,7 @@ repositories {
 
 neoForge {
     // Pinned to the exact NeoForge build this mod is meant to run against
-    version = "21.1.262"
+    version = "21.1.250"
 
     mods {
         create("trnightmareegoautoclick") {
