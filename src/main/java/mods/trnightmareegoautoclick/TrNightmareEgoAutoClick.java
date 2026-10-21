@@ -7,6 +7,7 @@ import net.neoforged.neoforge.client.event.ClientTickEvent;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
+import mods.trnightmareegoautoclick.client.EgoMinigameAutoClicker;
 
 @Mod("trnightmareegoautoclick")
 public class TrNightmareEgoAutoClick {
