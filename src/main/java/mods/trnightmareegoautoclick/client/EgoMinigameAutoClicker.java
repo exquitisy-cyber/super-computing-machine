@@ -235,14 +235,17 @@ public class EgoMinigameAutoClicker {
     }
     
     private static void clickDot(Screen screen, Object dot, Minecraft mc) {
-        // Try to use the screen's submitConverseDirective method if we can determine the click result
-        // But the actual click handling is done via mouse click simulation at the dot's position
-        
+        // Drive the click through the screen's own public input entry point
+        // (Screen#mouseClicked/#mouseReleased) rather than the raw GLFW layer:
+        // MouseHandler's button handler is private and not reachable without
+        // reflecting into NeoForge/vanilla internals, and this is exactly the
+        // method NeoForge's own input dispatch ends up calling for a real click.
+
         if (dotXField != null && dotYField != null) {
             try {
                 float x = getFloatValue(dot, dotXField);
                 float y = getFloatValue(dot, dotYField);
-                
+
                 // The dot positions are relative to the converse board
                 // We need to convert to screen coordinates
                 int boardX = 0, boardY = 0;
@@ -250,27 +253,13 @@ public class EgoMinigameAutoClicker {
                     boardX = (int) converseBoardXMethod.invoke(screen);
                     boardY = (int) converseBoardYMethod.invoke(screen);
                 }
-                
-                int clickX = boardX + (int) x;
-                int clickY = boardY + (int) y;
-                
-                // Simulate mouse click at the dot position
-                mc.mouseHandler.handleButton(
-                    mc.getWindow().getWindow(),
-                    0, // GLFW_MOUSE_BUTTON_LEFT
-                    1, // GLFW_PRESS
-                    0
-                );
-                mc.mouseHandler.handleButton(
-                    mc.getWindow().getWindow(),
-                    0,
-                    0, // GLFW_RELEASE
-                    0
-                );
-                
-                // Also try to call submitConverseDirective if available
-                // This might not be needed as the mouse click should trigger it
-                
+
+                double clickX = boardX + x;
+                double clickY = boardY + y;
+
+                screen.mouseClicked(clickX, clickY, 0); // GLFW_MOUSE_BUTTON_LEFT
+                screen.mouseReleased(clickX, clickY, 0);
+
             } catch (Exception e) {
                 // Ignore
             }
@@ -349,10 +338,18 @@ public class EgoMinigameAutoClicker {
                         color = 0xFF0000FF; // Blue for normal
                     }
                     
-                    // Draw circle around dot
+                    // Draw a square outline around the dot (GuiGraphics has no circle primitive)
                     guiGraphics.pose().pushPose();
                     guiGraphics.pose().translate(0, 0, 300);
-                    guiGraphics.drawCircle(screenX, screenY, (int)radius, color);
+                    int boxRadius = (int) radius;
+                    int left = screenX - boxRadius;
+                    int right = screenX + boxRadius;
+                    int top = screenY - boxRadius;
+                    int bottom = screenY + boxRadius;
+                    guiGraphics.fill(left, top, right, top + 1, color);        // top edge
+                    guiGraphics.fill(left, bottom - 1, right, bottom, color);  // bottom edge
+                    guiGraphics.fill(left, top, left + 1, bottom, color);      // left edge
+                    guiGraphics.fill(right - 1, top, right, bottom, color);    // right edge
                     guiGraphics.pose().popPose();
                     
                     // Draw label
