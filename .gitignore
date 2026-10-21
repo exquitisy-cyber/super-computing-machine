@@ -1,0 +1,30 @@
+# Gradle
+.gradle/
+build/
+out/
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Eclipse
+.project
+.classpath
+.settings/
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Minecraft run directory
+run/
+
+# Fabric/Forge/NeoForge
+src/main/resources/META-INF/mods.toml.bak

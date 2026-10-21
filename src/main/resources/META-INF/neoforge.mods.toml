@@ -1,0 +1,31 @@
+[[mods]]
+modId="trnightmareegoautoclick"
+version="1.0.0"
+displayName="TrNightmare Ego Auto Clicker"
+description="Automatically clicks silver/gold nodes in the Ego Converse minigame from trnightmare"
+authors=["exquitisy-cyber"]
+contact={
+    homepage="https://github.com/exquitisy-cyber/super-computing-machine"
+    issues="https://github.com/exquitisy-cyber/super-computing-machine/issues"
+}
+
+[[dependencies.trnightmareegoautoclick]]
+modId="neoforge"
+mandatory=true
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.trnightmareegoautoclick]]
+modId="minecraft"
+mandatory=true
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.trnightmareegoautoclick]]
+modId="trnightmare"
+mandatory=false
+versionRange="[1.0,)"
+ordering="AFTER"
+side="CLIENT"

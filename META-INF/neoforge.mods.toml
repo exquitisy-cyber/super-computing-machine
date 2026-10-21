@@ -1,0 +1,56 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="MIT"
+
+[[mods]]
+modId="trnightmare"
+version="1.0.5.2.2.5-neoforge-1.21.1"
+displayName="TR: Nightmare"
+description='''
+An addon that adds new content to Tensura: Reincarnated. Ported from 1.19.2 Forge sources to NeoForge 1.21.1 + ManasCore/Tensura NeoForge APIs (work in progress).
+'''
+
+[[mixins]]
+config="trnightmare.mixins.json"
+
+[[accessTransformers]]
+file="META-INF/accesstransformer.cfg"
+
+[[dependencies.trnightmare]]
+modId="neoforge"
+type="required"
+versionRange="[21.1.220,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.trnightmare]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1]"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.trnightmare]]
+modId="tensura"
+type="required"
+versionRange="[1.9.0,)"
+ordering="AFTER"
+side="BOTH"
+
+[[dependencies.trnightmare]]
+modId="projecte"
+type="optional"
+versionRange="[1.1.0,)"
+ordering="BEFORE"
+side="BOTH"
+reason="If ProjectE is installed, TRNightmare will use ProjectE's EMC mappings and systems instead of its vendored ones for full compatibility."
+
+[[dependencies.trnightmare]]
+modId="textanimator"
+type="required"
+versionRange="[3.0,)"
+ordering="NONE"
+side="CLIENT"
+reason="Animated skill names in ability HUD and mode selection (wave / rainbow / neon / gradient tags)."
+
+
