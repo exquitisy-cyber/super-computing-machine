@@ -22,7 +22,7 @@ jobs:
           ./gradlew build --no-daemon --stacktrace 2>&1 | tee build.log
           exit ${PIPESTATUS[0]}
       - name: Surface failure log as annotation
-        if: steps.build.outcome == 'failure'
+        if: failure() && steps.build.outcome == 'failure'
         shell: bash
         run: |
           TAIL=$(tail -c 60000 build.log)
