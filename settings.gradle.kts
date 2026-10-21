@@ -7,7 +7,7 @@ pluginManagement {
     resolutionStrategy {
         eachPlugin {
             if (requested.id.id == "net.neoforged.gradle.neoforge") {
-                useModule("net.neoforged.gradle:neoforge-gradle-plugin:7.0.0")
+                useModule("net.neoforged.gradle:neoforge-gradle-plugin:21.1.45")
             }
         }
     }

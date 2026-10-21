@@ -1,7 +1,7 @@
 plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.9.24"
-    id("net.neoforged.gradle.neoforge") version "7.0.0"
+    id("net.neoforged.gradle.neoforge") version "21.1.45"
 }
 
 group = "mods.trnightmareegoautoclick"
