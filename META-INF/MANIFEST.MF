@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+ModLoader: neoforge
+NeoForge-Version: 21.1.250
+Mod-ID: trnightmareegoautoclick
+Mod-Name: TrNightmare Ego Auto Clicker
+Mod-Version: 1.0.0
+

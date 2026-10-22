@@ -1,56 +1,31 @@
-modLoader="javafml"
-loaderVersion="[1,)"
-license="MIT"
-
 [[mods]]
-modId="trnightmare"
-version="1.0.5.2.2.5-neoforge-1.21.1"
-displayName="TR: Nightmare"
-description='''
-An addon that adds new content to Tensura: Reincarnated. Ported from 1.19.2 Forge sources to NeoForge 1.21.1 + ManasCore/Tensura NeoForge APIs (work in progress).
-'''
+modId="trnightmareegoautoclick"
+version="1.0.0"
+displayName="TrNightmare Ego Auto Clicker"
+description="Automatically clicks silver/gold nodes in the Ego Converse minigame from trnightmare"
+authors=["exquitisy-cyber"]
+contact={
+    homepage="https://github.com/exquitisy-cyber/super-computing-machine"
+    issues="https://github.com/exquitisy-cyber/super-computing-machine/issues"
+}
 
-[[mixins]]
-config="trnightmare.mixins.json"
-
-[[accessTransformers]]
-file="META-INF/accesstransformer.cfg"
-
-[[dependencies.trnightmare]]
+[[dependencies.trnightmareegoautoclick]]
 modId="neoforge"
-type="required"
-versionRange="[21.1.220,)"
+mandatory=true
+versionRange="[21.1,)"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.trnightmare]]
+[[dependencies.trnightmareegoautoclick]]
 modId="minecraft"
-type="required"
+mandatory=true
 versionRange="[1.21.1]"
 ordering="NONE"
 side="BOTH"
 
-[[dependencies.trnightmare]]
-modId="tensura"
-type="required"
-versionRange="[1.9.0,)"
+[[dependencies.trnightmareegoautoclick]]
+modId="trnightmare"
+mandatory=false
+versionRange="[1.0,)"
 ordering="AFTER"
-side="BOTH"
-
-[[dependencies.trnightmare]]
-modId="projecte"
-type="optional"
-versionRange="[1.1.0,)"
-ordering="BEFORE"
-side="BOTH"
-reason="If ProjectE is installed, TRNightmare will use ProjectE's EMC mappings and systems instead of its vendored ones for full compatibility."
-
-[[dependencies.trnightmare]]
-modId="textanimator"
-type="required"
-versionRange="[3.0,)"
-ordering="NONE"
 side="CLIENT"
-reason="Animated skill names in ability HUD and mode selection (wave / rainbow / neon / gradient tags)."
-
-

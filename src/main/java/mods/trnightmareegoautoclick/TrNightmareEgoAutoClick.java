@@ -8,10 +8,15 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.Screen;
 import mods.trnightmareegoautoclick.client.EgoMinigameAutoClicker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Mod("trnightmareegoautoclick")
 public class TrNightmareEgoAutoClick {
+    private static final Logger LOGGER = LoggerFactory.getLogger("TrNightmareEgoAutoClick");
+
     public TrNightmareEgoAutoClick(IEventBus modEventBus, ModContainer modContainer) {
+        LOGGER.info("TrNightmare Ego Auto Clicker loaded!");
         modEventBus.addListener(this::onClientTick);
     }
 

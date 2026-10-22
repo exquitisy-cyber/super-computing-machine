@@ -17,9 +17,7 @@ repositories {
 }
 
 neoForge {
-    // Pinned to the exact NeoForge build this mod is meant to run against
     version = "21.1.250"
-
     mods {
         create("trnightmareegoautoclick") {
             sourceSet(sourceSets.main.get())
@@ -29,4 +27,16 @@ neoForge {
 
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
+}
+
+tasks.named<Jar>("jar") {
+    manifest {
+        attributes(
+            "ModLoader" to "neoforge",
+            "NeoForge-Version" to "21.1.250",
+            "Mod-ID" to "trnightmareegoautoclick",
+            "Mod-Name" to "TrNightmare Ego Auto Clicker",
+            "Mod-Version" to "1.0.0"
+        )
+    }
 }

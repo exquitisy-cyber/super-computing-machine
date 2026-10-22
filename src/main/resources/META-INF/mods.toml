@@ -1,5 +1,7 @@
 [[mods]]
 modId="trnightmareegoautoclick"
+loader = "neoforge"
+loaderVersion = "21.1.250"
 version="1.0.0"
 displayName="TrNightmare Ego Auto Clicker"
 description="Automatically clicks silver/gold nodes in the Ego Converse minigame from trnightmare"
